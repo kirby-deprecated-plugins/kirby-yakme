@@ -1,0 +1,180 @@
+/* ---------------------------------------------------
+
+  1. Editfield
+  2. Toolbar
+  3. Markdown
+  4. WYSIWYG
+
+  1. The main textarea where the content goes
+  2. The toolbar with the buttons, above the editor
+  3. The styling, shown without preview (editfield)
+  4. The styling in preview / side-by-side mode
+
+--------------------------------------------------- */
+
+/* ---------------------- */
+/* 1. Editfield */
+/* ---------------------- */
+
+/* Define your fonttypes here */
+
+@import url(https://fonts.googleapis.com/css?family=Kalam:400,700);
+
+/* Set the font for the editor and previewmode(s) */
+
+.yakme_wrapper .CodeMirror-lines span,
+.yakme_wrapper .editor-preview *,
+.yakme_wrapper [class*=editor-preview] * {
+  font-family: "Kalam";
+}
+
+/* Force the "syntax" to monospace */
+
+.yakme_wrapper .cm-formatting {
+  font-family: monospace !important;
+}
+
+/* Background of the editfield */
+
+.yakme_wrapper .CodeMirror,
+.yakme_wrapper .CodeMirror pre {
+  background: #eaf2fa;
+}
+
+/* ---------------------- */
+/* 2. Toolbar */
+/* ---------------------- */
+
+/* Hide all the Kirby buttons, simply change the classname to select other buttons */
+
+.yakme_wrapper .editor-toolbar .fa-envelope.kirby,
+.yakme_wrapper .editor-toolbar .fa-link.kirby,
+.yakme_wrapper .editor-toolbar .fa-image.kirby,
+.yakme_wrapper .editor-toolbar .separator:nth-of-type(4) {
+  display: none;
+}
+
+/* ---------------------- */
+/* 3. Markdown */
+/* ---------------------- */
+
+/* Blockquote */
+
+.yakme_wrapper .CodeMirror-lines span.cm-quote {
+  font-style: italic;
+  color: #444;
+}
+
+/* H-tags*/
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-1 {
+  font-size: 26px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-2 {
+  font-size: 24px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-3 {
+  font-size: 22px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-4 {
+  font-size: 20px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-5 {
+  font-size: 18px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-6 {
+  font-size: 16px;
+}
+
+/* UL / OL lists in "markdown wysiwyg mode" */
+
+.yakme_wrapper.yakme_wysiwyg .cm-formatting-list {
+  font-weight: bold;
+  color: #999 !important;
+}
+
+/* ---------------------- */
+/* 4. WYSIWYG */
+/* ---------------------- */
+
+/* Remember, when the editfield is active, you can press [CTRL / CMD + P] to toggle WYSIWYG */
+/* And when the editfield is active, [F9] toggles the side-by-side mode - [ESC] will close fullscreen */
+
+/* Preview */
+
+.yakme_wrapper [class*=editor-preview] {
+  background: #ccc url("https://images.unsplash.com/photo-1430921688227-2c59c6489072?w=1500&h=950") top center no-repeat;
+}
+
+/* Tables */
+
+.yakme_wrapper table * {
+  text-align: left;
+}
+
+/* Anchor */
+
+.yakme_wrapper [class*=editor-preview] a {
+  border-bottom-color: #ff0200;
+  color: #ff0200;
+}
+
+/* Images */
+
+.yakme_wrapper [class*=editor-preview] img,
+.yakme_wrapper .editor-preview img {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .25);
+  padding: 1em;
+  background: #fff;
+  float: right;
+  clear: both;
+}
+
+/* Blockquotes */
+
+.yakme_wrapper [class*=editor-preview] blockquote {
+  border-left: 4px solid #ff0200;
+  background: #444;
+  color: #fff;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+/* Lists */
+
+.yakme_wrapper [class*=editor-preview] ol {
+  color: #ff0200;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Headers */
+
+.yakme_wrapper [class*=editor-preview] > h1{
+  font-size: 2em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h2 {
+  font-size: 1.75em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h3 {
+  font-size: 1.5em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h4 {
+  font-size: 1.25em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h5 {
+  font-size: 1.15em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h6 {
+  font-size: 1.1em;
+}

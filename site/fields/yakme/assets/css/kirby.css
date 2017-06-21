@@ -1,0 +1,405 @@
+/* ---------------------------------------------------
+
+  INDEX
+
+  1. Editfield
+  2. Toolbar
+  3. Markdown
+  4. WYSIWYG
+
+  1. The main textarea where the content goes
+  2. The toolbar with the buttons, above the editor
+  3. The styling, shown without preview (editfield)
+  4. The styling in preview / side-by-side mode
+
+--------------------------------------------------- */
+
+
+/* ---------------------- */
+/* 1. Edit field */
+/* ---------------------- */
+
+textarea.yakme_editor {
+  display: none !important; /* debug : block | none */
+}
+
+.yakme_wrapper * {
+  outline: none !important;
+}
+
+.yakme_wrapper .CodeMirror {
+  border-radius: 0;
+  border: 2px solid #ddd;
+  z-index: 0;
+}
+
+.yakme_wrapper.yakme_field_over .CodeMirror {
+  border-color: #8dae28;
+}
+
+.yakme_wrapper .CodeMirror.CodeMirror-fullscreen,
+.yakme_wrapper .CodeMirror-fullscreen .CodeMirror-scroll {
+  height: 100%;
+}
+
+.yakme_wrapper .CodeMirror-cursor {
+  border-left: 2px solid #8dae28;
+}
+
+.yakme_wrapper .CodeMirror-focused {
+  border-color: #8dae28;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span {
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.yakme_wrapper .CodeMirror-lines {
+  line-height: 1.5em;
+}
+
+.yakme_wrapper .editor-preview-side {
+  border-top-width: 2px;
+  top: 88px;
+}
+
+.yakme_wrapper .CodeMirror-scroll {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  overflow-x: hidden !important;
+}
+
+/* ---------------------- */
+/* 2. Toolbar */
+/* ---------------------- */
+
+.yakme_wrapper .editor-toolbar {
+  border-radius: 0;
+  background: #fff;
+  opacity: 1 !important;
+  border: 2px solid #ddd;
+  border-bottom: none;
+  padding: 2px;
+}
+
+.yakme_wrapper .editor-toolbar.disabled-for-preview a:not(.no-disable) {
+  color: #bbb !important;
+  background: #fafafa !important;
+  border-color: #fff !important;
+}
+
+.yakme_wrapper .editor-toolbar a {
+  margin: 0 2px;
+  border-radius: 0;
+  color: #666 !important;
+}
+
+.yakme_wrapper .editor-toolbar .separator + a:not(.kirby) {
+  margin: 0;
+}
+
+.yakme_wrapper.yakme_fixed .editor-toolbar .fa-font,
+.yakme_wrapper.yakme_wysiwyg .editor-toolbar .fa-hashtag {
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+}
+
+.yakme_wrapper .editor-toolbar a.active,
+.yakme_wrapper .editor-toolbar a:hover {
+  border-color: #ddd;
+  color: #111 !important;
+}
+
+.yakme_wrapper .editor-toolbar a.kirby {
+  background: #dfe9be;
+  color: #93ab4e !important;
+  border-color: #93ab4e;
+  margin: 0 3px !important;
+}
+
+.yakme_wrapper .editor-toolbar a.kirby:hover {
+  background: #93ab4e;
+  color: #fff !important;
+}
+
+.yakme_wrapper .editor-toolbar i.separator {
+  color: transparent;
+  margin: 0 8px;
+  padding: 8px 0;
+  border-left-color: #ddd;
+}
+
+.yakme_wrapper .editor-toolbar.fullscreen {
+  height: 39px;
+  top: 49px;
+}
+
+.yakme_wrapper .editor-toolbar:before,
+.yakme_wrapper .editor-toolbar:after {
+  height: 0;
+  margin: 0;
+}
+
+.modal-content .yakme_wrapper .editor-toolbar .fa-font,
+.modal-content .yakme_wrapper .editor-toolbar .fa-columns,
+.modal-content .yakme_wrapper .editor-toolbar .fa-arrows-alt,
+.modal-content .yakme_wrapper .editor-toolbar .fa-hashtag,
+.modal-content .yakme_wrapper .editor-toolbar .separator:last-of-type {
+  display: none;
+}
+
+/* Show | hide elements, set by blueprint */
+
+.yakme_show .editor-toolbar i.separator,
+.yakme_hide .editor-toolbar i.separator {
+  visibility: hidden;
+  margin: 0;
+  border: 0;
+}
+
+.yakme_show .editor-toolbar .separator + a,
+.yakme_hide .editor-toolbar .separator + a {
+  margin: 0 2px 0 0;
+}
+
+.yakme_show .editor-toolbar a[class*=fa],
+.yakme_hide.bold_hide .editor-toolbar .fa-bold,
+.yakme_hide.italic_hide .editor-toolbar .fa-italic,
+.yakme_hide.heading_hide .editor-toolbar .fa-header,
+.yakme_hide.quote_hide .editor-toolbar .fa-quote-left,
+.yakme_hide.list_hide .editor-toolbar [class*=fa-list],
+.yakme_hide.list-ul_hide .editor-toolbar .fa-list-ul,
+.yakme_hide.list-ol_hide .editor-toolbar .fa-list-ol,
+.yakme_hide.table_hide .editor-toolbar .fa-table,
+.yakme_hide.divider_hide .editor-toolbar .fa-minus,
+.yakme_hide.link_hide .editor-toolbar .fa-link:not(.kirby),
+.yakme_hide.image_hide .editor-toolbar .fa-picture-o:not(.kirby),
+.yakme_hide.kirby_hide .editor-toolbar .kirby,
+.yakme_hide.kirby-mail_hide .editor-toolbar .kirby.fa-envelope,
+.yakme_hide.kirby-link_hide .editor-toolbar .kirby.fa-link,
+.yakme_hide.kirby-image_hide .editor-toolbar .kirby.fa-picture-o,
+.yakme_hide.kirby-video_hide .editor-toolbar .kirby.fa-youtube-play,
+.yakme_hide.font_hide .editor-toolbar .fa-font,
+.yakme_hide.wysiwyg_hide .editor-toolbar .fa-hashtag,
+.yakme_hide.preview_hide .editor-toolbar .fa-eye,
+.yakme_hide.split_hide .editor-toolbar .fa-columns,
+.yakme_hide.fullscreen_hide .editor-toolbar .fa-arrows-alt {
+  display: none !important;
+}
+
+.yakme_show.bold_show .editor-toolbar .fa-bold,
+.yakme_show.italic_show .editor-toolbar .fa-italic,
+.yakme_show.heading_show .editor-toolbar .fa-header,
+.yakme_show.quote_show .editor-toolbar .fa-quote-left,
+.yakme_show.list_show .editor-toolbar [class*=fa-list],
+.yakme_show.list-ul_show .editor-toolbar .fa-list-ul,
+.yakme_show.list-ol_show .editor-toolbar .fa-list-ol,
+.yakme_show.table_show .editor-toolbar .fa-table,
+.yakme_show.divider_show .editor-toolbar .fa-minus,
+.yakme_show.link_show .editor-toolbar .fa-link:not(.kirby),
+.yakme_show.image_show .editor-toolbar .fa-picture-o:not(.kirby),
+.yakme_show.kirby_show .editor-toolbar .kirby,
+.yakme_show.kirby-mail_show .editor-toolbar .kirby.fa-envelope,
+.yakme_show.kirby-link_show .editor-toolbar .kirby.fa-link,
+.yakme_show.kirby-image_show .editor-toolbar .kirby.fa-picture-o,
+.yakme_show.kirby-video_show .editor-toolbar .kirby.fa-youtube-play,
+.yakme_show.font_show .editor-toolbar .fa-font,
+.yakme_show.wysiwyg_show .editor-toolbar .fa-hashtag,
+.yakme_show.preview_show .editor-toolbar .fa-eye,
+.yakme_show.split_show .editor-toolbar .fa-columns,
+.yakme_show.fullscreen_show .editor-toolbar .fa-arrows-alt {
+  display: inline-block !important;
+}
+
+/* ---------------------- */
+/* 3. Markdown */
+/* ---------------------- */
+
+.yakme_wrapper.yakme_wysiwyg .cm-formatting {
+  display: none;
+}
+
+.yakme_wrapper.yakme_wysiwyg .cm-formatting-list {
+  display: inline-block !important;
+  background: #fff !important;
+  font-weight: bold;
+  color: #999 !important;
+}
+
+.yakme_wrapper .CodeMirror pre {
+  background: #fff;
+  padding: 1px 0;
+}
+
+.yakme_wrapper span.CodeMirror-selectedtext {
+  background: #444 !important;
+  color: #eee !important;
+}
+
+.yakme_wrapper .CodeMirror-selected {
+  background: #fff !important;
+}
+
+.yakme_wrapper .CodeMirror .CodeMirror-code .cm-link {
+  color: #8dae28;
+}
+
+.yakme_wrapper span.cm-formatting {
+  color: #666;
+  background: #eee;
+  display: inline-block;
+  text-align: center;
+}
+
+.yakme_wrapper .CodeMirror .CodeMirror-code .cm-tag {
+  color: #8dae28;
+}
+
+.yakme_wrapper .CodeMirror-lines span.cm-quote {
+  font-style: italic;
+  color: #444;
+}
+
+.yakme_wrapper .CodeMirror-lines span.cm-header-1,
+.yakme_wrapper .CodeMirror-lines span.cm-header-2,
+.yakme_wrapper .CodeMirror-lines span.cm-header-3,
+.yakme_wrapper .CodeMirror-lines span.cm-header-4,
+.yakme_wrapper .CodeMirror-lines span.cm-header-5,
+.yakme_wrapper .CodeMirror-lines span.cm-header-6 {
+  line-height: 125%;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-1 {
+  font-size: 26px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-2 {
+  font-size: 24px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-3 {
+  font-size: 22px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-4 {
+  font-size: 20px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-5 {
+  font-size: 18px;
+}
+
+.yakme_wrapper.yakme_fixed .CodeMirror-lines span.cm-header-6 {
+  font-size: 16px;
+}
+
+/* ---------------------- */
+/* 4. WYSIWYG */
+/* ---------------------- */
+
+.yakme_wrapper [class*=editor-preview] pre {
+  background: #eee;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+.yakme_wrapper table * {
+  text-align: left;
+}
+
+.yakme_wrapper .CodeMirror-fullscreen {
+  top: 88px;
+  z-index: 666;
+}
+
+.yakme_wrapper [class*=editor-preview] {
+  line-height: 1.5em;
+  padding: 1.5em;
+}
+
+.yakme_wrapper [class*=editor-preview] img {
+  margin: 1em .5em;
+}
+
+.yakme_wrapper [class*=editor-preview] ol,
+.yakme_wrapper [class*=editor-preview] ul {
+  margin: .5em 2em;
+}
+
+.yakme_wrapper [class*=editor-preview] > table {
+  background: #fff;
+}
+
+.yakme_wrapper .editor-preview code {
+  background: #ededed;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.yakme_wrapper [class*=editor-preview] > pre,
+.yakme_wrapper [class*=editor-preview] > table,
+.yakme_wrapper [class*=editor-preview] > p,
+.yakme_wrapper [class*=editor-preview] > hr,
+.yakme_wrapper [class*=editor-preview] > h1,
+.yakme_wrapper [class*=editor-preview] > h2,
+.yakme_wrapper [class*=editor-preview] > h3,
+.yakme_wrapper [class*=editor-preview] > h4,
+.yakme_wrapper [class*=editor-preview] > h5,
+.yakme_wrapper [class*=editor-preview] > h6 {
+  margin-bottom: 1em;
+}
+
+.yakme_wrapper [class*=editor-preview] a,
+.yakme_wrapper .editor-preview a {
+  border-bottom: 2px solid #ddd;
+  color: #222;
+}
+
+.yakme_wrapper [class*=editor-preview] blockquote,
+.yakme_wrapper .editor-preview blockquote {
+  margin-bottom: 1em;
+  margin-left: .5em;
+  border-left: 3px solid #8dae28;
+  padding-left: 1em;
+  font-style: italic;
+  color: #555;
+  font-weight: 600;
+}
+
+.yakme_wrapper [class*=editor-preview] > ol,
+.yakme_wrapper .editor-preview > ol,
+.yakme_wrapper [class*=editor-preview] > ul,
+.yakme_wrapper .editor-preview > ul {
+  margin: 1em 0 1em 2em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h1,
+.yakme_wrapper .editor-preview > h1 {
+  font-size: 2em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h2,
+.yakme_wrapper .editor-preview > h2 {
+  font-size: 1.75em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h3,
+.yakme_wrapper .editor-preview > h3 {
+  font-size: 1.5em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h4,
+.yakme_wrapper .editor-preview > h4 {
+  font-size: 1.25em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h5,
+.yakme_wrapper .editor-preview > h5 {
+  font-size: 1.15em;
+}
+
+.yakme_wrapper [class*=editor-preview] > h6,
+.yakme_wrapper .editor-preview > h6 {
+  font-size: 1.1em;
+}

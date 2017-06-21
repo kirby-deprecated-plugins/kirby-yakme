@@ -1,0 +1,12 @@
+title: Page
+pages: true
+files: true
+fields:
+
+  title:
+    label: Title
+    type:  text
+
+  yakme_example:
+    label: Yakme - Example
+    type:  yakme
